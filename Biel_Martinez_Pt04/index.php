@@ -1,8 +1,8 @@
 <!-- Biel Martinez Caceres -->
 <?php
-
+include 'controlador.php';
 try {
-    $connexio = new PDO('mysql:host=localhost;dbname=pt04_Biel_Martinez', 'root', '');
+    $connexio = conectarBD();
     //Modificació d'atributs necessària per al funcionament del codi, això fa que quan insertem el numero del limit i el offset a la consulta s'insereixi com a int i no com a string
     $connexio->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
@@ -22,7 +22,7 @@ try {
     $recompte = $sentencia->fetchObject()->recompte;
     //Comprovació de si el recompte d'articles és buit per fer la redirecció
     if ($recompte == 0 || empty($recompte)) {
-        header("Location: ./Biel_Martinez_Pt03/");
+        header("Location: ./Biel_Martinez_Pt04/");
     }
     $paginaT = ceil($recompte / $artPerPag);
 
