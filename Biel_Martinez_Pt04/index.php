@@ -2,7 +2,7 @@
 <?php
 
 try {
-    $connexio = new PDO('mysql:host=localhost;dbname=pt03_biel_martinez', 'root', '');
+    $connexio = new PDO('mysql:host=localhost;dbname=pt04_Biel_Martinez', 'root', '');
     //Modificació d'atributs necessària per al funcionament del codi, això fa que quan insertem el numero del limit i el offset a la consulta s'insereixi com a int i no com a string
     $connexio->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
