@@ -27,8 +27,8 @@ try {
     $paginaT = ceil($recompte / $artPerPag);
 
     //Creació de l'array articles per guardar aquests
-    $sentencia1 = $connexio->prepare("SELECT article FROM articles LIMIT ? OFFSET ?");
-    $sentencia1->execute([$limit, $offset]);
+    $sentencia1 = $connexio->prepare("SELECT article FROM articles");
+    $sentencia1->execute();
     $articles = $sentencia1->fetchAll(PDO::FETCH_OBJ);
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
