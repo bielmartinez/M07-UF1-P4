@@ -21,43 +21,6 @@
 				</ul>
 			<?php } ?>
 		</section>
-
-		<nav>
-			<div class="row">
-				<div class="col-xs-12 col-sm-6">
-					<p>Mostrant <?php echo $artPerPag ?> de <?php echo $recompte ?> articles disponibles</p>
-				</div>
-				<div class="col-xs-12 col-sm-6">
-					<p>Pàgina <?php echo $pagina ?> de <?php echo $paginaT ?> </p>
-				</div>
-			</div>
-			<ul class="pagination">
-				<!-- Si la pagina actual és > 1, es mostra el botó de pagina anterior -->
-				<?php if ($pagina > 1) { ?>
-					<li>
-						<a href="index.php?pagina=<?php echo $pagina - 1 ?>">
-							<span aria-hidden="true">&laquo;</span>
-						</a>
-					</li>
-				<?php } ?>
-
-				<!-- Mostrem totes les pàgines-->
-				<?php for ($x = 1; $x <= $paginaT; $x++) { ?>
-					<li class="<?php if ($x == $pagina) echo "active" ?>">
-						<a href="index.php?pagina=<?php echo $x ?>">
-							<?php echo $x ?></a>
-					</li>
-				<?php } ?>
-				<!-- Si la pàgina actual és < que el total de pagines, es mostra el botó de pàgina següent -->
-				<?php if ($pagina < $paginaT) { ?>
-					<li>
-						<a href="index.php?pagina=<?php echo $pagina + 1 ?>">
-							<span aria-hidden="true">&raquo;</span>
-						</a>
-					</li>
-				<?php } ?>
-			</ul>
-		</nav>
 </body>
 
 </html>
