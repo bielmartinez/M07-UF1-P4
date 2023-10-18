@@ -1,6 +1,7 @@
 <!-- Biel Martinez Caceres -->
 <?php
-include 'controlador.php';
+require 'controlador.php';
+require 'registrar.vista.php';
 $connexio = conectarBD();
 if (isset($_REQUEST['usuari'])) {
     $usuari =  arreglarDades($_POST['usuari']);
