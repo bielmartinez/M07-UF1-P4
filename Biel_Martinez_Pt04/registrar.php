@@ -1,13 +1,17 @@
 <!-- Biel Martinez Caceres -->
+
 <?php
 require 'controlador.php';
-require 'registrar.vista.php';
+
+
 $connexio = conectarBD();
-if (isset($_REQUEST['usuari'])) {
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuari =  arreglarDades($_POST['usuari']);
     $contrasenya = arreglarDades($_POST['contrasenya']);
     $contrasenya2 = arreglarDades($_POST['contrasenya2']);
     $contrasenya = hash('sha512', $contrasenya);
+
     if (empty($usuari)) {
         $errors[0] = "El camp usuari està buit";
     } else {
@@ -29,6 +33,8 @@ if (isset($_REQUEST['usuari'])) {
     if ($contrasenya == $contrasenya2) {
         $correcte[3] = true;
     } else {
-        $errors [3] = "Les contrasenyes no coincideixen";
+        $errors[3] = "Les contrasenyes no coincideixen";
     }
 }
+
+require 'registrar.vista.php';
