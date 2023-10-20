@@ -1,5 +1,5 @@
 <!-- Biel Martinez Caceres -->
-
+<!-- password_verify($contrasenya, $contrasenyabdd); dona true o false -->
 <?php
 require 'controlador.php';
 
