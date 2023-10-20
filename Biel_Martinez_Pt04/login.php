@@ -15,7 +15,6 @@ $contrasenya2;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuari =  arreglarDades($_POST['usuari']);
     $contrasenya = arreglarDades($_POST['contrasenya']);
-    $contrasenya2 = arreglarDades($_POST['contrasenya2']);
 
     if (empty($usuari)) {
         $errors[0] = "El camp usuari està buit";
@@ -29,23 +28,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $correcte[1] = true;
     }
 
-    if (empty($contrasenya2)) {
-        $errors[2] = "La segona contrasenya està buida";
-    } else {
-        $correcte[2] = true;
-    }
-
-    if ($contrasenya == $contrasenya2) {
-        $correcte[3] = true;
-    } else {
-        $errors[3] = "Les contrasenyes no coincideixen";
-    }
-
-    if ($correcte[0] && $correcte[1] && $correcte[2] && $correcte[3]) {
+    if ($correcte[0] && $correcte[1]) {
         $contrasenya = password_hash($contrasenya, PASSWORD_DEFAULT);
-        $sentencia = $connexio->prepare("INSERT INTO `usuaris`(`usuari`, `contrasenya`) VALUES (? ,?) ");
-        $sentencia->execute([$usuari, $contrasenya]);
+        $sentencia = $connexio->prepare("SELECT `usuari` FROM `usuaris` WHERE usuari = ?");
+        $sentencia->execute([$usuari]);
+        $usuariBD = $sentencia1->fetchAll(PDO::FETCH_OBJ);
+        $sentencia2 = $connexio->prepare("SELECT 'contrasenya' FROM 'usuaris' WHERE usuari = ?");
+        $sentencia2->execute([$usuari]);
+        $contrasenyaBD = $sentencia2->fetchAll(PDO::FETCH_OBJ);
+        $pwd = password_verify($contrasenya, $contrasenyaBD);
+        if ($usuari == $usuariBD && $pwd) {
+            session_start();
+        }
     }
 }
 
-require 'registrar.vista.php';
+require 'login.vista.php';

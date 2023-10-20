@@ -2,15 +2,15 @@
 
 <?php
 require 'controlador.php';
-
-
-$connexio = conectarBD();
+require 'registrar.vista.php';
 
 $errors = array();
 $correcte = array();
 $usuari;
 $contrasenya;
 $contrasenya2;
+
+$connexio = conectarBD();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuari =  arreglarDades($_POST['usuari']);
@@ -48,4 +48,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-require 'registrar.vista.php';
