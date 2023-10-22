@@ -11,13 +11,21 @@
 </head>
 <header>
 	
-	<?php  if (isset($_SESSION[$usuari])) ?>
+	<?php  if (!isset($_SESSION["user"])) { ?>
 	<a href="login.php">
 		Login
 	</a>
 	<a href="registrar.php">
 		Register
 	</a>
+
+	<?php } else { ?>
+		<a href="logout.php" >
+			Sortir
+			</a>
+
+	<?php } ?>
+
 
 
 </header>
