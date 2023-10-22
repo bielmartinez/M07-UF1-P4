@@ -50,4 +50,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-require 'login.vista.php';
+require './vista/login.vista.php';

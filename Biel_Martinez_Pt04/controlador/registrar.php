@@ -1,7 +1,7 @@
 <!-- Biel Martinez Caceres -->
 <?php
 require 'controlador.php';
-require 'registrar.vista.php';
+require './vista/registrar.vista.php';
 
 $errors = array();
 $correcte = array();
