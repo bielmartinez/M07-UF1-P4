@@ -12,10 +12,21 @@ try {
     $pagina = 1;
     if (isset($_GET["pagina"])) {
         $pagina = $_GET["pagina"];
+
     }
 
     //Calculs de les variables que controlen les pagines i els articles per pagina
-    $artPerPag = 5;
+    $artPerPag = 40;
+    if ($_SERVER["REQUEST_METHOD"]=="GET"){
+        if(!isset($_GET["artPerPag"])){
+            $artPerPag=40;
+        }else{
+            $artPerPag=$_GET["artPerPag"];
+            if($artPerPag>40 || $artPerPag<5){
+                $artPerPag=5;
+            }
+        }
+    }
     $limit = intval($artPerPag);
     $offset = intval(($pagina - 1) * $artPerPag);
 
@@ -29,8 +40,8 @@ try {
     $paginaT = ceil($recompte / $artPerPag);
 
     //Creació de l'array articles per guardar aquests
-    $sentencia1 = $connexio->prepare("SELECT article FROM articles");
-    $sentencia1->execute();
+    $sentencia1 = $connexio->prepare("SELECT article FROM articles LIMIT ? OFFSET ?");
+    $sentencia1->execute([$limit, $offset]);
     $articles = $sentencia1->fetchAll(PDO::FETCH_OBJ);
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();

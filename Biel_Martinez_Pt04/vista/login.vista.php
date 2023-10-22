@@ -11,7 +11,7 @@
 </header>
 
 <form action="../controlador/login.php" method="post">
-    Usuari: <input type="text" name="usuari" value="<?php echo htmlspecialchars(isset($_POST['usuari']) ? $_POST['usuari'] : ''); ?>"> <?php echo isset($errors[0]) ? $errors[0] : ''; ?><br>
-    Contrasenya: <input type="password" name="contrasenya" value="<?php echo htmlspecialchars(isset($_POST['contrasenya']) ? $_POST['contrasenya'] : ''); ?>"> <?php echo isset($errors[1]) ? $errors[1] : ''; ?><br>
+    Usuari: <input type="text" name="usuari" value="<?php if (isset($usuari)) { echo $usuari; } ?>" <?php echo isset($errors[0]) ? $errors[0] : ''; ?> <br>
+    Contrasenya: <input type="password" name="contrasenya" value="<?php if (isset($contrasenya)) { echo $contrasenya; } ?>"> <?php echo isset($errors[1]) ? $errors[1] : ''; ?><br>
     <input type="submit">
 </form>

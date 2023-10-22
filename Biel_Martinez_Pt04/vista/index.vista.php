@@ -10,7 +10,7 @@
 	<title>Paginació</title>
 </head>
 <header>
-	
+	<!-- Només es mostra la opcio de logar/registrarse si no tens sessio, si la tens apareix el teu nom i la opcio de sortir -->
 	<?php  if (!isset($_SESSION["user"])) { ?>
 	<a href="./controlador/login.php">
 		Login
@@ -34,6 +34,20 @@
 
 
 <body>
+	<!-- Si estas logat apareix un formulari per triar el nombre d'articles per pagina -->
+	<?php if (isset($_SESSION["user"])) { ?>
+	<form action="./index.php" method="get">
+		<label for="artPerPag">Nombre d'articles per pagina</label>
+		<select name="artPerPag" id="artPerPag">
+			<option value="5">5</option>
+			<option value="10">10</option>
+			<option value="20">20</option>
+			<option value="40" selected="selected">40</option>
+		</select>
+		<input type="submit">
+	</form>
+	<?php } ?>
+
 	<div class="contenidor">
 		<h1>Articles</h1>
 		<section class="articles">
@@ -44,6 +58,35 @@
 				</ul>
 			<?php } ?>
 		</section>
+
+		<?php if (isset($_SESSION["user"])) { ?>
+			<ul class="pagination">
+				<!-- Si la pagina actual és > 1, es mostra el botó de pagina anterior -->
+				<?php if ($pagina > 1) { ?>
+					<li>
+						<a href="./index.php?pagina=<?php echo $pagina - 1 ?>">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+				<?php } ?>
+
+				<!-- Mostrem totes les pàgines-->
+				<?php for ($x = 1; $x <= $paginaT; $x++) { ?>
+					<li class="<?php if ($x == $pagina) echo "active" ?>">
+						<a href="./index.php?pagina=<?php echo $x ?>">
+							<?php echo $x ?></a>
+					</li>
+				<?php } ?>
+				<!-- Si la pàgina actual és < que el total de pagines, es mostra el botó de pàgina següent -->
+				<?php if ($pagina < $paginaT) { ?>
+					<li>
+						<a href="./index.php?pagina=<?php echo $pagina + 1 ?>">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				<?php } ?>
+			</ul>
+		<?php } ?>
 </body>
 
 </html>
