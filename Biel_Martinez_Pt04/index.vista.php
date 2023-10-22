@@ -16,13 +16,14 @@
 		Login
 	</a>
 	<a href="registrar.php">
-		Register
+		Registrar
 	</a>
 
 	<?php } else { ?>
 		<a href="logout.php" >
 			Sortir
 			</a>
+		<?php echo ($_SESSION["user"]); ?>
 
 	<?php } ?>
 
