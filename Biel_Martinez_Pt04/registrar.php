@@ -1,5 +1,5 @@
 <!-- Biel Martinez Caceres -->
-
+<!-- Password bcrypt -->
 <?php
 require 'controlador.php';
 require 'registrar.vista.php';

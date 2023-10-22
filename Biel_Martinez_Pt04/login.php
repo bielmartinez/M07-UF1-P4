@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pwd = password_verify($contrasenya, $contrasenyaBD);
         if ($usuari == $usuariBD && $pwd) {
             session_start();
+            $_SESSION["user"] = $usuari;
         }
     }
 }

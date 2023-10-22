@@ -75,3 +75,16 @@ h1 {
 	text-decoration: none;
 	background: #399228;
 }
+
+header {
+	background-color: #333; 
+	color: #fff; 
+	padding: 10px; 
+	text-align: right;
+}
+
+header a {
+	color: #fff; 
+	text-decoration: none; 
+	margin: 0 10px; 
+}

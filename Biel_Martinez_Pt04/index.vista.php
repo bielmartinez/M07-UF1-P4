@@ -9,6 +9,13 @@
 	<link rel="stylesheet" href="estils.css">
 	<title>Paginació</title>
 </head>
+<header>
+	<a href="">
+		Login 
+		Register
+	</a>
+</header>
+
 
 <body>
 	<div class="contenidor">
