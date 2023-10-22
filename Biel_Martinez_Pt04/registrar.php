@@ -41,10 +41,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[3] = "Les contrasenyes no coincideixen";
     }
 
+
+
     if ($correcte[0] && $correcte[1] && $correcte[2] && $correcte[3]) {
-        $contrasenya = password_hash($contrasenya, PASSWORD_DEFAULT);
-        $sentencia = $connexio->prepare("INSERT INTO `usuaris`(`usuari`, `contrasenya`) VALUES (? ,?) ");
-        $sentencia->execute([$usuari, $contrasenya]);
+        $comprovacio = $connexio->prepare("SELECT usuari FROM `usuaris` WHERE usuari = ? ");
+        $comprovacio->execute([$usuari]);
+        $usuariComprovacio = $comprovacio->fetchAll(PDO::FETCH_OBJ);
+        if ($usuariComprovacio){
+            echo "L'usuari introduït ja està registrat";
+        } else {
+            $contrasenya = password_hash($contrasenya, PASSWORD_DEFAULT);
+            $sentencia = $connexio->prepare("INSERT INTO `usuaris`(`usuari`, `contrasenya`) VALUES (? ,?) ");
+            $sentencia->execute([$usuari, $contrasenya]);
+            header("Location:index.php");
+        }
     }
 }
-

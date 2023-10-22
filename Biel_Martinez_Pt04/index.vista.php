@@ -10,10 +10,14 @@
 	<title>Paginació</title>
 </head>
 <header>
-	<a href="">
-		Login 
+	<a href="login.php">
+		Login
+	</a>
+	<a href="registrar.php">
 		Register
 	</a>
+
+
 </header>
 
 

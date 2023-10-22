@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($usuari == $usuariBD && $pwd) {
             session_start();
             $_SESSION["user"] = $usuari;
+            header("Location:index.php");
         }
     }
 }
