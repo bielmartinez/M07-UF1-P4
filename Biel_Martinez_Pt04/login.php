@@ -29,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($correcte[0] && $correcte[1]) {
-        $contrasenya = password_hash($contrasenya, PASSWORD_DEFAULT);
         $sentencia = $connexio->prepare("SELECT usuari FROM usuaris WHERE usuari = ?");
         $sentencia->execute([$usuari]);
         $usuariBD = $sentencia->fetchColumn();

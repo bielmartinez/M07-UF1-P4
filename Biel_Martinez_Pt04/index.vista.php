@@ -10,6 +10,8 @@
 	<title>Paginació</title>
 </head>
 <header>
+	
+	<?php  if (isset($_SESSION[$usuari])) ?>
 	<a href="login.php">
 		Login
 	</a>
