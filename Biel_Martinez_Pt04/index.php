@@ -1,6 +1,6 @@
 <!-- Biel Martinez Caceres -->
 <?php
-include 'controlador.php';
+include './controlador/controlador.php';
 session_start();
 
 try {

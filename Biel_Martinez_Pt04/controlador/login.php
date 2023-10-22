@@ -37,9 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $pwd = password_verify($contrasenya, $contrasenyaBD);
         if ($usuari == $usuariBD && $pwd) {
-            session_start();
-            $_SESSION["user"] = $usuari;
-            header("Location:index.php");
+            iniciarSessio($usuari);
+            header("Location:../index.php");
         }
         elseif (!($usuari == $usuariBD)){
             echo "L'usuari introduït no existeix";
@@ -50,4 +49,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-require './vista/login.vista.php';
+require '../vista/login.vista.php';

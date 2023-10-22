@@ -1,7 +1,7 @@
 <!-- Biel Martinez Caceres -->
 <?php
 require 'controlador.php';
-require './vista/registrar.vista.php';
+require '../vista/registrar.vista.php';
 
 $errors = array();
 $correcte = array();
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if ($correcte[0] && $correcte[1] && $correcte[2] && $correcte[3]) {
-        $comprovacio = $connexio->prepare("SELECT usuari FROM `usuaris` WHERE usuari = ? ");
+        $comprovacio = $connexio->prepare("SELECT usuari FROM usuaris WHERE usuari = ? ");
         $comprovacio->execute([$usuari]);
         $usuariComprovacio = $comprovacio->fetchAll(PDO::FETCH_OBJ);
         if ($usuariComprovacio){
@@ -52,7 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $contrasenya = password_hash($contrasenya, PASSWORD_DEFAULT);
             $sentencia = $connexio->prepare("INSERT INTO `usuaris`(`usuari`, `contrasenya`) VALUES (? ,?) ");
             $sentencia->execute([$usuari, $contrasenya]);
-            header("Location:index.php");
+            iniciarSessio($usuari);
+            header("Location:../index.php");
         }
     }
 }

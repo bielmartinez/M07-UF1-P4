@@ -12,4 +12,9 @@
         $input = htmlspecialchars($input);
         return $input;
     }
+
+    function iniciarSessio($usuari) {
+        session_start();
+        $_SESSION["user"] = $usuari;
+    }
 ?>
