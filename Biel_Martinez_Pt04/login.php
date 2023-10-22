@@ -30,17 +30,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($correcte[0] && $correcte[1]) {
         $contrasenya = password_hash($contrasenya, PASSWORD_DEFAULT);
-        $sentencia = $connexio->prepare("SELECT `usuari` FROM `usuaris` WHERE usuari = ?");
+        $sentencia = $connexio->prepare("SELECT usuari FROM usuaris WHERE usuari = ?");
         $sentencia->execute([$usuari]);
-        $usuariBD = $sentencia1->fetchAll(PDO::FETCH_OBJ);
-        $sentencia2 = $connexio->prepare("SELECT 'contrasenya' FROM 'usuaris' WHERE usuari = ?");
+        $usuariBD = $sentencia->fetchColumn();
+        $sentencia2 = $connexio->prepare("SELECT contrasenya FROM usuaris WHERE usuari = ?");
         $sentencia2->execute([$usuari]);
-        $contrasenyaBD = $sentencia2->fetchAll(PDO::FETCH_OBJ);
+        $contrasenyaBD = $sentencia2->fetchColumn();
+
         $pwd = password_verify($contrasenya, $contrasenyaBD);
         if ($usuari == $usuariBD && $pwd) {
             session_start();
             $_SESSION["user"] = $usuari;
             header("Location:index.php");
+        }
+        elseif (!($usuari == $usuariBD)){
+            echo "L'usuari introduït no existeix";
+        }
+        elseif (!$pwd) {
+            echo "Contrasenya incorrecte";
         }
     }
 }
