@@ -23,6 +23,7 @@
 		<a href="logout.php" >
 			Sortir
 			</a>
+			Sessio iniciada com a
 		<?php echo ($_SESSION["user"]); ?>
 
 	<?php } ?>
